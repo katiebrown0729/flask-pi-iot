@@ -20,6 +20,10 @@ def getserial():
 
     return cpuserial
 
+def get_serverlist():
+    serverlist = ['https://katie-pi-iot.cfapps.io/', 'https://megan-pi-iot.cfapps.io/','https://david-pi-iot.cfapps.io/','https://jpf-pi-iot.cfapps.io/','https://shane-pi-iot.cfapps.io/']
+    return serverlist
+
 while True:
     x,y,z=accel.read()
     print('X={0}, Y={1}, Z={2}'.format(x, y, z))
