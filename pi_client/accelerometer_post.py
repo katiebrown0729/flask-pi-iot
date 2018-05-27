@@ -21,7 +21,7 @@ def getserial():
     return cpuserial
 
 def get_serverlist():
-    serverlist = ['https://katie-pi-iot.cfapps.io/', 'https://megan-pi-iot.cfapps.io/','https://david-pi-iot.cfapps.io/','https://jpf-flask-pi-iot.cfapps.io/','https://shane-pi-iot.cfapps.io/']
+    serverlist = ['https://katie-pi-iot.cfapps.io/', 'https://megan-pi-iot.cfapps.io/','https://david-pi-iot.cfapps.io/','http://jpf-flask-pi-iot.cfapps.io/','https://shane-pi-iot.cfapps.io/']
     return serverlist
 
 def get_valid_servers():
