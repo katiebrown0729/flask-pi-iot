@@ -24,11 +24,13 @@ def get_serverlist():
     serverlist = ['https://katie-pi-iot.cfapps.io/', 'https://megan-pi-iot.cfapps.io/','https://david-pi-iot.cfapps.io/','https://jpf-pi-iot.cfapps.io/','https://shane-pi-iot.cfapps.io/']
     return serverlist
 
-while True:
-    x,y,z=accel.read()
-    print('X={0}, Y={1}, Z={2}'.format(x, y, z))
-    ts=datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-    serial=getserial()
-    aData={'serial-number':serial,'timestamp':ts,'x':x,'y':y,'z':z}
-    print(aData)
-    r=requests.post('https://katie-pi-iot.cfapps.io/',data=aData)
+
+if __name__ == '__main__':
+    while True:
+        x,y,z=accel.read()
+        print('X={0}, Y={1}, Z={2}'.format(x, y, z))
+        ts=datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+        serial=getserial()
+        aData={'serial-number':serial,'timestamp':ts,'x':x,'y':y,'z':z}
+        print(aData)
+        r=requests.post('https://katie-pi-iot.cfapps.io/',data=aData)
