@@ -11,7 +11,10 @@ class test_accelerometer_post(unittest.TestCase):
         self.assertTrue(len(l) > 0)
 
     def test_servers(self):
-        ap.get_valid_servers()
+        l=ap.get_valid_servers()
+        self.assertTrue(len(l) < 1)
+
+
 
 
 if __name__ == '__main__':
