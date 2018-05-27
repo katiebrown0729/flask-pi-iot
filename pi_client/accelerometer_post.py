@@ -29,6 +29,7 @@ def test_servers():
     for server in sl:
         print("servername: " + server)
         r = requests.get(server)
+        print("Status returned: " + r.status_code)
 
 if __name__ == '__main__':
     while True:
