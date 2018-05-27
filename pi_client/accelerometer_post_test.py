@@ -8,7 +8,7 @@ class test_accelerometer_post(unittest.TestCase):
 
     def test_get_serverlist(self):
         l=ap.get_serverlist()
-        self.asserttrue(type(l)==type(list()))
+        self.assertTrue(type(l)==type(list()))
         self.assertTrue(len(l) > 0)
 
     def test_servers(self):
