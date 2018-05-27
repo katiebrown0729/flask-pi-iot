@@ -24,6 +24,11 @@ def get_serverlist():
     serverlist = ['https://katie-pi-iot.cfapps.io/', 'https://megan-pi-iot.cfapps.io/','https://david-pi-iot.cfapps.io/','https://jpf-pi-iot.cfapps.io/','https://shane-pi-iot.cfapps.io/']
     return serverlist
 
+def test_servers():
+    sl=get_serverlist()
+    for server in sl:
+        print("servername: " + server)
+        r = requests.get(server)
 
 if __name__ == '__main__':
     while True:
