@@ -16,7 +16,5 @@ class test_accelerometer_post(unittest.TestCase):
         self.assertTrue(len(l) > 0)
 
 
-
-
 if __name__ == '__main__':
     unittest.main()
