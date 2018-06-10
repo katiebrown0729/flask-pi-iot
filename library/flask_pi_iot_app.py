@@ -3,15 +3,25 @@ from flask import render_template
 from flask import request
 from flask import jsonify
 import requests
+from library.pi_iot_data import pi_iot_data as pid
+
 
 app = Flask(__name__)
 
+aPID = pid.PiIOTData()
+
 @app.route('/test', methods=['POST','GET'])
 def my_test():
-    print("/test")
-    print(request)
-    print(request.form)
+    if request.method == 'POST':
+        print("/test")
+        d = request.form
+       # print(d["serial-no"])
+        aPID.add_readings(d["serial-no"], d["timestamp"], d["x"], d["y"], d["z"])
+        print(aPID.get_number_of_readings())
     return("hello")
+        #add_readings
+
+
 
 @app.route('/yaml')
 def my_yaml_microservice():
