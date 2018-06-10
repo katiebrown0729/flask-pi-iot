@@ -17,7 +17,6 @@ def getserial():
         f.close()
     except:
         cpuserial = "ERROR000000000"
-
     return cpuserial
 
 def get_serverlist():
