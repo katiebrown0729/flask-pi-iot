@@ -19,9 +19,16 @@ def my_test():
         aPID.add_readings(d["serial-no"], d["timestamp"], d["x"], d["y"], d["z"])
         print(aPID.get_number_of_readings())
     return("hello")
-        #add_readings
 
 
+@app.route('/alldata.html', methods=['POST','GET'])
+def all_data():
+    print("/alldata")
+    d = aPID.get_readings()
+    print("/alldata:d{}".format(d))
+    print(aPID.get_number_of_readings())
+    print(len(d))
+    return render_template('alldata.html',data=d)
 
 @app.route('/yaml')
 def my_yaml_microservice():
