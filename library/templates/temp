@@ -1,0 +1,3 @@
+{% for d in data %}
+        {{d[serial-no]}}  :  {{d[timestamp]}}  :  {{d[x]}} : {{d[y]}}  :  {{d[z]}}
+    [% endfor %}
