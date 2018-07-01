@@ -9,7 +9,29 @@
 
 <body>
     <h1> All Data </h1>
-    {{data}}
+    <main-content class="main">
+        <p>
+           Total number of readings is: {{data.__len__()}}
+            <table border="1" width="100%">
+                <tr>
+                    <th>Serial Number</th>
+                    <th>Timestamp</th>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>Z</th>
+                </tr>
+            {% Read in the Data %}
+                <tr>
+                    <td>{{reading['serial-no']}}</td>
+                    <td>{{reading['timestamp']}}</td>
+                    <td>{{reading['x']}}</td>
+                    <td>{{reading['y']}}</td>
+                    <td>{{reading['z']}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </p>
+</main-content>
 <br>
 <br>
 
