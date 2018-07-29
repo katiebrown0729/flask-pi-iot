@@ -8,19 +8,7 @@
 </head>
 
 <body>
-
-<page class="wrapper">
-<header class="header">All Accelerometer Data
-<ul class="navigation">
-		<li><a href="index.html">Home</a></li>
-		<li><a href="alldata.html">All Data</a></li>
-		<li><a href="meganpi.html">Megan</a></li>
-		<li><a href="johnpi.html">John</a></li>
-		<li><a href="katiepi.html">Katie</a></li>
-		<li><a href="davidpi.html">David</a></li>
-</ul>
-</header>
-
+    <h1> All Data </h1>
     <main-content class="main">
         <p>
            Total number of readings is: {{data.__len__()}}
@@ -34,11 +22,11 @@
                 </tr>
             {% for reading in data %}
                 <tr>
-                    <td>{{reading[0]}}</td>
-                    <td>{{reading[1]}}</td>
-                    <td>{{reading[2]}}</td>
-                    <td>{{reading[3]}}</td>
-                    <td>{{reading[4]}}</td>
+                    <td>{{reading['serial-no']}}</td>
+                    <td>{{reading['timestamp']}}</td>
+                    <td>{{reading['x']}}</td>
+                    <td>{{reading['y']}}</td>
+                    <td>{{reading['z']}}</td>
                 </tr>
             {% endfor %}
             </table>
@@ -47,7 +35,6 @@
 
 <br>
 <br>
-
+All Data
 </body>
 </html>
-

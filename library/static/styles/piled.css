@@ -74,10 +74,11 @@ body {
 }
 
 .navigation a {
+  font-size: 6px;
   text-decoration: none;
   display: block;
   padding: 1em;
-  color: white;
+  color: red;
 }
 
 .navigation a:hover {
@@ -107,3 +108,6 @@ body {
     border-bottom: none;
   }
 }
+
+</head>
+
