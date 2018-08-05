@@ -8,9 +8,12 @@ class YAMLConfig():
         response = requests.get(url)
         if (response.status_code ==200):
             d = yaml.load(response.text)
-        print(d)
+        else:
+            print("This file is not valid")
+        #print(d)
         return d
 
 if __name__ == '__main__':
-    YConfig = YAMLConfig()  # type: YAMLConfig
-    YConfig.get_config_from_url("https://github.com/katiebrown0729/flask-pi-iot/blob/master/pi_client/config/config.yml")
+    YConfig = YAMLConfig()
+    serverdict =YConfig.get_config_from_url("https://raw.githubusercontent.com/katiebrown0729/flask-pi-iot/master/pi_client/config/config.yml")
+    print(serverdict)
