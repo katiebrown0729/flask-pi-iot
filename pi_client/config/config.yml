@@ -1,0 +1,6 @@
+serverList:
+    meganServer: 'http://megan-pi-iot.cfapps.io/index.html'
+    katieServer: 'http://katie-pi-iot.cfapps.io/index.html'
+    davidServer: 'http://david-pi-iot.cfapps.io/index.html'
+    johnServer: 'http://jpf-flask-pi-iot.cfapps.io/index.html'
+    shaneServer: 'http://shane-pi-iot.cfapps.io/index.html'
