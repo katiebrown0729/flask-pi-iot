@@ -1,6 +1,6 @@
 serverList:
-    - http://megan-pi-iot.cfapps.io/test.html
-    - http://katie-pi-iot.cfapps.io/test.html
-    - http://david-pi-iot.cfapps.io/test.html
-    - http://jpf-flask-pi-iot.cfapps.io/test.html
-    - http://shane-pi-iot.cfapps.io/test.html
+    - http://megan-pi-iot.cfapps.io/
+    - http://katie-pi-iot.cfapps.io/
+    - http://david-pi-iot.cfapps.io/
+    - http://jpf-flask-pi-iot.cfapps.io/
+    - http://shane-pi-iot.cfapps.io/
