@@ -1,8 +1,9 @@
 # Mock Pi file
-realPi=False
+realPi=True
 
 if realPi:
     import Adafruit_ADXL345
+    accel = Adafruit_ADXL345.ADXL345()
 
 
 import requests
