@@ -10,7 +10,7 @@ import time
 import datetime
 import random
 import math
-from pi_client.config import config
+from config import config
 
 
 class DataPoster():
