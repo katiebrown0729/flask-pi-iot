@@ -62,7 +62,7 @@ class DataPoster():
         z = random.randrange(0, 10, 1)
         return (x, y, z)
 
-    def post_to_valid_servers(self, aData: object) -> object:
+    def post_to_valid_servers(self, aData):
         self.get_valid_servers(self.get_ServerList())
         n = 0
         for server in self._validServers:
