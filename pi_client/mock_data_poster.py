@@ -1,21 +1,31 @@
 # Mock Pi file
+realPi=False
+
+if realPi:
+    import Adafruit_ADXL345
+
 
 import requests
 import time
 import datetime
 import random
 import math
+from pi_client.config import config
+
 
 class DataPoster():
 
     def __init__(self):
         self._validServers = []
         self._invalidServers = []
-        self._serverList = ['http://megan-pi-iot.cfapps.io/test',
+        '''self._serverList = ['http://megan-pi-iot.cfapps.io/test',
                      'http://katie-pi-iot.cfapps.io/test',
                     'http://david-pi-iot.cfapps.io/test',
                     'http://jpf-flask-pi-iot.cfapps.io/test',
-                    'http://shane-flask-pi-iot.cfapps.io/test']
+                    'http://shane-flask-pi-iot.cfapps.io/test']'''
+        YConfig = config.YAMLConfig()
+        self._serverList = YConfig.get_config_from_url(
+            "https://raw.githubusercontent.com/katiebrown0729/flask-pi-iot/master/pi_client/config/config.yml")
 
     def getserial(self):
         # Extract serial from cpuinfo file
@@ -36,7 +46,8 @@ class DataPoster():
 
     def get_valid_servers(self, sl):
         for server in sl:
-            r = requests.get(server)
+            url_to_send_to = server + "/index.html"
+            r = requests.get(url_to_send_to)
             if r.status_code != 200:
                 self._invalidServers.append(server)
                 # print('Added {} to INVALID server list' .format(server))
@@ -45,7 +56,7 @@ class DataPoster():
                 # print('Added {} to VALID server list'.format(server))
         return(self._validServers)
 
-    def accel_read(self):
+    def mock_accel_read(self):
         x = random.randrange(0, 10, 1)
         y = random.randrange(0, 10, 1)
         z = random.randrange(0, 10, 1)
@@ -56,15 +67,21 @@ class DataPoster():
         n = 0
         for server in self._validServers:
             print("Sending to server {}".format(server))
-            r = requests.post(server, data = aData)
+            url_to_send_to = server + "/test"
+            r = requests.post(url_to_send_to, data = aData)
             if r.status_code != 200:
                 print("server: {} returned error code: {}".format(server, r.status_code))
             else:
                 n = n + 1
+                print("Successfully sent data to: {}".format(server))
         return n
 
     def get_aData(self):
-        x, y, z = self.accel_read()
+        if realPi:
+            x, y, z = accel.read()
+        else:
+            x, y, z = self.mock_accel_read()
+
         print('X={0}, Y={1}, Z={2}'.format(x, y, z))
         ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
         myserial = self.getserial()
