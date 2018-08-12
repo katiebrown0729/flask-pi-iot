@@ -11,9 +11,10 @@ class YAMLConfig():
         else:
             print("This file is not valid")
         #print(d)
-        return d
+        l = d['serverList']
+        return l
 
 if __name__ == '__main__':
     YConfig = YAMLConfig()
-    serverdict =YConfig.get_config_from_url("https://raw.githubusercontent.com/katiebrown0729/flask-pi-iot/master/pi_client/config/config.yml")
-    print(serverdict)
+    serverlist =YConfig.get_config_from_url("https://raw.githubusercontent.com/katiebrown0729/flask-pi-iot/master/pi_client/config/config.yml")
+    print(serverlist)
