@@ -104,8 +104,4 @@ if __name__ == '__main__':
             dP.get_valid_servers(dP.get_ServerList())
             oldtime = time.time()
 
-
-
-
-
         #todo make check for valid servers periodically
