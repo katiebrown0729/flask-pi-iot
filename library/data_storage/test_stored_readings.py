@@ -6,7 +6,8 @@
 
 import unittest
 import datetime
-import StoredReadings from stored_readings
+import random
+from stored_readings import StoredReadings
 
 class TestStoredReadings(unittest.TestCase):
     def setUp(self):
@@ -21,7 +22,12 @@ class TestStoredReadings(unittest.TestCase):
             x = random.randint(0, 358)
             y = random.randint(0, 358)
             z = random.randint(0, 358)
-            aSR.add_readings("46406064", datetime, x, y, z)
+            aSR.add_readings("46406064", "11:15", x, y, z)
 
         n = aSR.get_number_of_readings()
-        self.assertTrue(n == 3)
+        print(n)
+        self.assertTrue(n == 2)
+
+if __name__ == '__main__':
+    print("Starting Tests.")
+    unittest.main()
