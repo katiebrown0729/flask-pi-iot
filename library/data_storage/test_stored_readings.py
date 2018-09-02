@@ -39,9 +39,8 @@ class TestStoredReadings(unittest.TestCase):
             x = random.randint(0, 358)
             y = random.randint(0, 358)
             z = random.randint(0, 358)
-            aSR.add_readings("46406064", "11:15", x, y, z)
-
-        print(aSR.df)
+            aSR.add_readings("46406064", "faketime", x, y, z)
+        aSR.list_readings()
 
 if __name__ == '__main__':
     print("Starting Tests.")
