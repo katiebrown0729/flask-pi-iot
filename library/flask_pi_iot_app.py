@@ -19,6 +19,7 @@ def my_test():
         aPID.add_readings(d["serial-no"], d["timestamp"], d["x"], d["y"], d["z"])
         print(aPID.get_number_of_readings())
     return("hello")
+    # remove aPID and replace with new data storage application for Assignment 3
 
 
 @app.route('/alldata.html', methods=['POST','GET'])
@@ -28,6 +29,7 @@ def all_data():
     print("/alldata:d{}".format(d))
     print(aPID.get_number_of_readings())
     print(len(d))
+    # Also "hook it up" here. For assignment 3.
     return render_template('alldata.html',data=d)
 
 @app.route('/yaml')

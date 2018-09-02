@@ -1,5 +1,3 @@
-# TODO write method for get number of readings
-
 import pandas as pd
 import numpy as np
 
@@ -11,14 +9,10 @@ class StoredReadings():
 
         print(self.df)
 
-
-
-
-    # TODO write  method for add readings
+ # Method for add readings
     def add_readings(self, serial_no, ts, x, y, z):
         self.df = self.df.append({'serial-no': serial_no,'timestamp':ts, 'x': x, 'y':y, 'z':z}, ignore_index=True)
-        print('Add number of readings works')
-        print(self.df)
+        #print(self.df)
 
     def get_number_of_readings(self):
         number_of_readings = self.df.index.max()
