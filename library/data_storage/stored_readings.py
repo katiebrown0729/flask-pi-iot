@@ -19,7 +19,7 @@ class StoredReadings():
         number_of_readings = self.df.index.max()
         return number_of_readings
 
-    def list_readings(self):
+        def list_readings(self):
         print(self.df)
 
     def get_first_reading(self):
@@ -37,8 +37,18 @@ class StoredReadings():
             'z': self.df.z[self.i]
         }
         return d
-        
-        
+
+    def get_intial_readings(self):
+        pass
+
+    def get_all_data_as_list(self):
+        #get first
+        #get next
+        # how does it know when to stop?
+        # use a while loop - do this until something happens
+            #get  next should return an empty value when it hits the end
+        #ensure self.i is not greater than get number of readings, when it is, return null
+
 if __name__ == '__main__':
     # Instantiating the class is required for this shit to run
     # Otherwise df is not recognized

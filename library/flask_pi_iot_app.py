@@ -3,12 +3,12 @@ from flask import render_template
 from flask import request
 from flask import jsonify
 import requests
-from library.pi_iot_data import pi_iot_data as pid
+from library.data_storage import stored_readings as stored
 
 
 app = Flask(__name__)
 
-aPID = pid.PiIOTData()
+dataStore = stored.StoredReadings()
 
 @app.route('/test', methods=['POST','GET'])
 def my_test():
@@ -16,18 +16,18 @@ def my_test():
         print("/test")
         d = request.form
        # print(d["serial-no"])
-        aPID.add_readings(d["serial-no"], d["timestamp"], d["x"], d["y"], d["z"])
-        print(aPID.get_number_of_readings())
+        dataStore.add_readings(d["serial-no"], d["timestamp"], d["x"], d["y"], d["z"])
+        print(dataStore.get_number_of_readings())
     return("hello")
-    # remove aPID and replace with new data storage application for Assignment 3
-
 
 @app.route('/alldata.html', methods=['POST','GET'])
 def all_data():
     print("/alldata")
-    d = aPID.get_readings()
+    # TODO: create a function to get subset of data and put that function here
+
+    d = dataStore.get_first_reading()
     print("/alldata:d{}".format(d))
-    print(aPID.get_number_of_readings())
+    print(dataStore.get_number_of_readings())
     print(len(d))
     # Also "hook it up" here. For assignment 3.
     return render_template('alldata.html',data=d)
