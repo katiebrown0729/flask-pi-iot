@@ -27,6 +27,7 @@ class TestStoredReadings(unittest.TestCase):
 
         n = aSR.get_number_of_readings()
         print('n = {}'.format(n))
+        # This returns the highest index
         self.assertTrue(n == 2)
 
 
@@ -63,7 +64,7 @@ class TestStoredReadings(unittest.TestCase):
             z = random.randint(0, 358)
             aSR.add_readings("46406064", "faketime", x, y, z)
         g=aSR.get_next_reading()
-        print (g)
+        print(g)
         self.assertTrue(g['x']==1)
 
     def test_get_all_data_as_list(self):
@@ -74,9 +75,13 @@ class TestStoredReadings(unittest.TestCase):
             y = random.randint(0, 358)
             z = random.randint(0, 358)
             aSR.add_readings("46406064", "faketime", x, y, z)
+
         adal = aSR.get_all_data_as_list()
-        print(adal)
-        self.assertTrue(type(adal = list))
+        print("adal: {}".format(adal))
+        print("type of adal: {}".format(type(adal)))
+        # test the return type is a list
+        self.assertTrue(type(adal) == list)
+        # test the difference between the length of the list and the number of readings is 0
         n = len(adal) - aSR.get_number_of_readings()
         self.assertTrue(n == 0)
 

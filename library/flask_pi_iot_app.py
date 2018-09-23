@@ -23,9 +23,7 @@ def my_test():
 @app.route('/alldata.html', methods=['POST','GET'])
 def all_data():
     print("/alldata")
-    # TODO: create a function to get subset of data and put that function here
-
-    d = dataStore.get_first_reading()
+    d = dataStore.get_all_data_as_list()
     print("/alldata:d{}".format(d))
     print(dataStore.get_number_of_readings())
     print(len(d))

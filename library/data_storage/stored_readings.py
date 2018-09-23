@@ -19,7 +19,7 @@ class StoredReadings():
         number_of_readings = self.df.index.max()
         return number_of_readings
 
-        def list_readings(self):
+    def list_readings(self):
         print(self.df)
 
     def get_first_reading(self):
@@ -42,12 +42,30 @@ class StoredReadings():
         pass
 
     def get_all_data_as_list(self):
-        #get first
+        datalist = []
+        # get first
+        first = self.get_first_reading()
+        print("first: {}".format(first))
+        datalist.append(first)
+        print("datalist: {}".format(datalist))
         #get next
+
         # how does it know when to stop?
         # use a while loop - do this until something happens
             #get  next should return an empty value when it hits the end
         #ensure self.i is not greater than get number of readings, when it is, return null
+        while True:
+            try:
+                somethingelse = self.get_next_reading()
+                print("next: {}".format(somethingelse))
+                datalist.append(somethingelse)
+                print("datalist added: {}".format(datalist))
+            except IndexError:
+                print("We got an index error.")
+            #     the except never fires (even if we take out IndexError)
+            finally:
+                return datalist
+
 
 if __name__ == '__main__':
     # Instantiating the class is required for this shit to run
