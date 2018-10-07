@@ -23,8 +23,14 @@ class StoredReadings():
         print(self.df)
 
     def get_first_reading(self):
-        self.i = i = 0
-        d={'serial_no':self.df.serial_no[i],'timestamp':self.df.timestamp[i],'x':self.df.x[i],'y':self.df.y[i],'z':self.df.z[i]}
+        sizeOfDataFrame = self.df.shape[0]
+        if sizeOfDataFrame > 0:
+            self.i = i = 0
+            d={'serial_no':self.df.serial_no[i],'timestamp':self.df.timestamp[i],'x':self.df.x[i],'y':self.df.y[i],'z':self.df.z[i]}
+
+        else:
+            d={'serial_no':"None",'timestamp':"None",'x':0,'y':0,'z':0}
+
         return d
     
     def get_next_reading(self):

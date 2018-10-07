@@ -34,11 +34,11 @@
                 </tr>
             {% for reading in data %}
                 <tr>
-                    <td>{{'serial_no'}}</td>
-                    <td>{{'timestamp'}}</td>
-                    <td>{{'x'}}</td>
-                    <td>{{'y'}}</td>
-                    <td>{{'z'}}</td>
+                    <td>{{reading.serial_no}}</td>
+                    <td>{{reading.timestamp}}</td>
+                    <td>{{reading.x}}</td>
+                    <td>{{reading.y}}</td>
+                    <td>{{reading.z}}</td>
                 </tr>
             {% endfor %}
             </table>
