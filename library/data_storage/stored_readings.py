@@ -16,7 +16,7 @@ class StoredReadings():
         # print(self.df)
 
     def get_number_of_readings(self):
-        number_of_readings = self.df.index.max()
+        number_of_readings = self.df.index.max() + 1
         return number_of_readings
 
     def list_readings(self):
@@ -36,6 +36,7 @@ class StoredReadings():
             'y': self.df.y[self.i],
             'z': self.df.z[self.i]
         }
+        print("d is {}".format(d))
         return d
 
     def get_intial_readings(self):
@@ -45,9 +46,9 @@ class StoredReadings():
         datalist = []
         # get first
         first = self.get_first_reading()
-        print("first: {}".format(first))
+        # print("first: {}".format(first))
         datalist.append(first)
-        print("datalist: {}".format(datalist))
+        # print("datalist: {}".format(datalist))
         #get next
 
         # how does it know when to stop?
@@ -57,14 +58,11 @@ class StoredReadings():
         while True:
             try:
                 somethingelse = self.get_next_reading()
-                print("next: {}".format(somethingelse))
                 datalist.append(somethingelse)
-                print("datalist added: {}".format(datalist))
-            except IndexError:
-                print("We got an index error.")
-            #     the except never fires (even if we take out IndexError)
-            finally:
+            except Exception as ex:
+                print("We got an unexpected error {}.".format(ex))
                 return datalist
+
 
 
 if __name__ == '__main__':

@@ -28,7 +28,7 @@ class TestStoredReadings(unittest.TestCase):
         n = aSR.get_number_of_readings()
         print('n = {}'.format(n))
         # This returns the highest index
-        self.assertTrue(n == 2)
+        self.assertTrue(n == 3)
 
 
     def test_list_readings(self):
@@ -82,6 +82,8 @@ class TestStoredReadings(unittest.TestCase):
         # test the return type is a list
         self.assertTrue(type(adal) == list)
         # test the difference between the length of the list and the number of readings is 0
+        lengthAdal = len(adal)
+        numberReadings = aSR.get_number_of_readings()
         n = len(adal) - aSR.get_number_of_readings()
         self.assertTrue(n == 0)
 
