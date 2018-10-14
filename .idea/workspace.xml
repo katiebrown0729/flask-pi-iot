@@ -41,8 +41,8 @@
       <file leaf-file-name="mock_data_poster.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pi_client/mock_data_poster.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="114" column="30" lean-forward="false" selection-start-line="114" selection-start-column="30" selection-end-line="114" selection-end-column="30" />
+            <state relative-caret-position="378">
+              <caret line="121" column="22" lean-forward="true" selection-start-line="121" selection-start-column="22" selection-end-line="121" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -497,7 +497,21 @@
       <option name="project" value="LOCAL" />
       <updated>1539547662572</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="fixed math problem">
+      <created>1539547839914</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1539547839914</updated>
+    </task>
+    <task id="LOCAL-00019" summary="fixed math problem">
+      <created>1539547887158</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1539547887158</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -591,7 +605,8 @@
     <MESSAGE value="Changed condional in main" />
     <MESSAGE value="only post once per second if the data doesn't change" />
     <MESSAGE value="adjusted the sensitivity setting" />
-    <option name="LAST_COMMIT_MESSAGE" value="adjusted the sensitivity setting" />
+    <MESSAGE value="fixed math problem" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed math problem" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -930,8 +945,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pi_client/mock_data_poster.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="114" column="30" lean-forward="false" selection-start-line="114" selection-start-column="30" selection-end-line="114" selection-end-column="30" />
+        <state relative-caret-position="378">
+          <caret line="121" column="22" lean-forward="true" selection-start-line="121" selection-start-column="22" selection-end-line="121" selection-end-column="22" />
           <folding />
         </state>
       </provider>

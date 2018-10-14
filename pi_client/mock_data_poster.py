@@ -121,6 +121,7 @@ if __name__ == '__main__':
            oldy = newy
            oldz = newz
            old_composite = new_composite
+           oldtime = newtime
 
         #This refreshes serverlist every 10 seconds
         if 60 <= newtime - oldtime:
