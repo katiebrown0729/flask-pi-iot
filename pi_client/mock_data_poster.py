@@ -97,16 +97,19 @@ if __name__ == '__main__':
     dP.get_valid_servers(dP.get_ServerList())
     oldtime = time.time()
     oldx = oldy = oldz = 0
+    old_composite = oldx + oldy + oldz
 
     while True:
         reading = dP.get_aData()
         newx = reading["x"]
         newy = reading["y"]
         newz = reading["z"]
+        new_composite = newx + newy + newz
+
         newtime = math.floor(time.time())
         postit = False
 
-        if( oldx != newx and oldy != newy and oldz != newz): #if data hasn't changed don't send it
+        if( 3 <= abs(new_composite - old_composite)): #if data hasn't changed don't send it
             postit=True
 
         if(1 <= oldtime - newtime ):  # if one second goes by with not change send the reading anyways
@@ -114,6 +117,10 @@ if __name__ == '__main__':
 
         if(postit==True):
            dP.post_to_valid_servers(reading)
+           oldx = newx
+           oldy = newy
+           oldz = newz
+           old_composite = new_composite
 
         #This refreshes serverlist every 10 seconds
         if 60 <= newtime - oldtime:
