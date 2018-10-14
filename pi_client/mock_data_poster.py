@@ -1,5 +1,5 @@
 # Mock Pi file
-realPi=False
+realPi=True
 
 if realPi:
     import Adafruit_ADXL345
@@ -102,7 +102,7 @@ if __name__ == '__main__':
         newtime = math.floor(time.time())
 
         #This refreshes serverlist every 10 seconds
-        if 10 >= newtime - oldtime:
+        if 60 >= newtime - oldtime:
             print("Refreshing server list...")
             dP.get_valid_servers(dP.get_ServerList())
             oldtime = time.time()
