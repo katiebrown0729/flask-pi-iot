@@ -66,7 +66,7 @@ class StoredReadings():
                 somethingelse = self.get_next_reading()
                 datalist.append(somethingelse)
             except Exception as ex:
-                print("We got an unexpected error {}.".format(ex))
+                #print("We got an unexpected error {}.".format(ex))
                 return datalist
 
 

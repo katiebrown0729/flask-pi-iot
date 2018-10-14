@@ -17,6 +17,7 @@ def my_test():
         d = request.form
        # print(d["serial-no"])
         dataStore.add_readings(d["serial-no"], d["timestamp"], d["x"], d["y"], d["z"])
+        print("serial-no: {}, timestamp: {}, x: {}, y: {}, z: {}".format(d["serial-no"], d["timestamp"], d["x"], d["y"], d["z"]))
         print(dataStore.get_number_of_readings())
     return("hello")
 

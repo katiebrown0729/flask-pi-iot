@@ -46,6 +46,8 @@ class DataPoster():
         return self._serverList
 
     def get_valid_servers(self, sl):
+        self._validServers = []
+        #print("In get_valid_servers() server list passed to us is {}" .format(sl))
         for server in sl:
             url_to_send_to = server + "/index.html"
             r = requests.get(url_to_send_to)
@@ -54,7 +56,7 @@ class DataPoster():
                 # print('Added {} to INVALID server list' .format(server))
             else:
                 self._validServers.append(server)
-                # print('Added {} to VALID server list'.format(server))
+                #print('In get_valid_servers() added {} to VALID server list'.format(server))
         return(self._validServers)
 
     def mock_accel_read(self):
@@ -99,9 +101,11 @@ if __name__ == '__main__':
         dP.post_to_valid_servers(dP.get_aData())
         newtime = math.floor(time.time())
 
+        #This refreshes serverlist every 10 seconds
         if 10 >= newtime - oldtime:
             print("Refreshing server list...")
             dP.get_valid_servers(dP.get_ServerList())
             oldtime = time.time()
+        print("In the main loop valid server list {}" .format(dP.get_valid_servers(dP.get_ServerList())))
 
         #todo make check for valid servers periodically
