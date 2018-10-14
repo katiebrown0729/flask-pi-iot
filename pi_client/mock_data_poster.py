@@ -66,7 +66,7 @@ class DataPoster():
         return (x, y, z)
 
     def post_to_valid_servers(self, aData):
-        self.get_valid_servers(self.get_ServerList())
+        #self.get_valid_servers(self.get_ServerList())
         n = 0
         for server in self._validServers:
             print("Sending to server {}".format(server))
@@ -94,7 +94,7 @@ class DataPoster():
 
 if __name__ == '__main__':
     dP = DataPoster()
-
+    dP.get_valid_servers(dP.get_ServerList())
     oldtime = time.time()
 
     while True:
@@ -106,6 +106,6 @@ if __name__ == '__main__':
             print("Refreshing server list...")
             dP.get_valid_servers(dP.get_ServerList())
             oldtime = time.time()
-        print("In the main loop valid server list {}" .format(dP.get_valid_servers(dP.get_ServerList())))
+            print("In the main loop valid server list {}" .format(dP.get_valid_servers(dP.get_ServerList())))
 
-        #todo make check for valid servers periodically
+
