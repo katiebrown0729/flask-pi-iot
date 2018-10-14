@@ -1,5 +1,5 @@
 # Mock Pi file
-realPi=True
+realPi=False
 
 if realPi:
     import Adafruit_ADXL345
