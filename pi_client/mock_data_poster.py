@@ -112,7 +112,7 @@ if __name__ == '__main__':
         if( 10 <= abs(new_composite - old_composite)): #if data hasn't changed don't send it
             postit=True
 
-        if(1 <= (newtime - oldtime) ):  # if one second goes by with not change send the reading anyways
+        if(1 <= (newtime - oldtime)):  # if one second goes by with not change send the reading anyways
             postit = True
 
         if(postit==True):
