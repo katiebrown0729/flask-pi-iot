@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 
+
 class StoredReadings():
     def __init__(self):
         self.df = []
@@ -8,12 +9,14 @@ class StoredReadings():
         self.df = pd.DataFrame(columns=['serial_no', 'timestamp', 'x', 'y', 'z'])
      #   print(self.df)
         self.i = 0
+        self.fileNumber = 0 #used for excel writer to increment filename
 
  # Method for add readings
     def add_readings(self, serial_no, ts, x, y, z):
         self.df = self.df.append({'serial_no': serial_no,'timestamp':ts, 'x': x, 'y':y, 'z':z}, ignore_index=True)
         # To print each append data step, uncomment below.
         # print(self.df)
+        self.readings_saver()
 
     def get_number_of_readings(self):
         number_of_readings = self.df.index.max() + 1
@@ -68,6 +71,21 @@ class StoredReadings():
             except Exception as ex:
                 #print("We got an unexpected error {}.".format(ex))
                 return datalist
+
+    #def excel_maker(self, filename, dataframe):
+
+
+    def readings_saver(self):
+        n = self.get_number_of_readings()
+        if n>=1000:
+            self.fileNumber = self.fileNumber +1
+            filename = 'Saved Readings' + str(self.fileNumber) + '.xlsx'
+            print('Saving the last 1000 readings to {}'.format(filename))
+            writer = pd.ExcelWriter(filename, engine='xlsxwriter')
+            self.df.to_excel(writer, sheet_name='accelData')
+            writer.save()
+            self.df = []
+            self.df = pd.DataFrame(columns=['serial_no', 'timestamp', 'x', 'y', 'z'])
 
 
 

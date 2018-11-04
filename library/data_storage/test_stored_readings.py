@@ -5,8 +5,9 @@
 #etc
 
 import unittest
-import datetime
 import random
+import datetime as dt
+from pathlib import Path
 from stored_readings import StoredReadings
 
 class TestStoredReadings(unittest.TestCase):
@@ -22,7 +23,7 @@ class TestStoredReadings(unittest.TestCase):
             x = random.randint(0, 358)
             y = random.randint(0, 358)
             z = random.randint(0, 358)
-            aSR.add_readings("46406064", "faketime", x, y, z)
+            aSR.add_readings("46406064", dt.datetime.now(), x, y, z)
 
 
         n = aSR.get_number_of_readings()
@@ -40,7 +41,7 @@ class TestStoredReadings(unittest.TestCase):
             x = random.randint(0, 358)
             y = random.randint(0, 358)
             z = i
-            aSR.add_readings("46406064", "faketime", x, y, z)
+            aSR.add_readings("46406064", dt.datetime.now(), x, y, z)
         aSR.list_readings()
 
     def test_get_first_reading(self):
@@ -51,7 +52,7 @@ class TestStoredReadings(unittest.TestCase):
             x = random.randint(0, 358)
             y = random.randint(0, 358)
             z = random.randint(0, 358)
-            aSR.add_readings("46406064", "faketime", x, y, z)
+            aSR.add_readings("46406064", dt.datetime.now(), x, y, z)
 
         print(aSR.get_first_reading())
 
@@ -62,7 +63,7 @@ class TestStoredReadings(unittest.TestCase):
             x = i
             y = random.randint(0, 358)
             z = random.randint(0, 358)
-            aSR.add_readings("46406064", "faketime", x, y, z)
+            aSR.add_readings("46406064", dt.datetime.now(), x, y, z)
         g=aSR.get_next_reading()
         print(g)
         self.assertTrue(g['x']==1)
@@ -74,7 +75,7 @@ class TestStoredReadings(unittest.TestCase):
             x = i
             y = random.randint(0, 358)
             z = random.randint(0, 358)
-            aSR.add_readings("46406064", "faketime", x, y, z)
+            aSR.add_readings("46406064", dt.datetime.now(), x, y, z)
 
         adal = aSR.get_all_data_as_list()
         print("adal: {}".format(adal))
@@ -86,6 +87,19 @@ class TestStoredReadings(unittest.TestCase):
         numberReadings = aSR.get_number_of_readings()
         n = len(adal) - aSR.get_number_of_readings()
         self.assertTrue(n == 0)
+
+    def test_excel_maker(self):
+        print("We are making an excel sheet")
+        aSR = StoredReadings()
+        for i in range(0, 3):
+            x = i
+            y = random.randint(0, 358)
+            z = random.randint(0, 358)
+            aSR.add_readings("46406064", dt.datetime.now(), x, y, z)
+        aSR.excel_maker('my_file_name')
+        my_file = Path ('./my_file_name.xlsx')
+
+        self.assertTrue(my_file.exists())
 
 if __name__ == '__main__':
     print("Starting Tests.")
