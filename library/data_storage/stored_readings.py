@@ -1,4 +1,5 @@
 import pandas as pd
+import boto3
 import numpy as np
 
 
@@ -56,6 +57,7 @@ class StoredReadings():
         # get first
         first = self.get_first_reading()
         # print("first: {}".format(first))
+        # Ensure .append does what you are expecting
         datalist.append(first)
         # print("datalist: {}".format(datalist))
         #get next
@@ -79,7 +81,7 @@ class StoredReadings():
         n = self.get_number_of_readings()
         if n>=1000:
             self.fileNumber = self.fileNumber +1
-            filename = 'Saved Readings' + str(self.fileNumber) + '.xlsx'
+            filename = 'Saved_Readings_' + str(self.fileNumber) + '.xlsx'
             print('Saving the last 1000 readings to {}'.format(filename))
             writer = pd.ExcelWriter(filename, engine='xlsxwriter')
             self.df.to_excel(writer, sheet_name='accelData')
