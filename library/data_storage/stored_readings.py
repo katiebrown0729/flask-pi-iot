@@ -1,6 +1,7 @@
 import pandas as pd
 import boto3
 import numpy as np
+import sqlite3
 
 
 class StoredReadings():
@@ -17,11 +18,32 @@ class StoredReadings():
         self.df = self.df.append({'serial_no': serial_no,'timestamp':ts, 'x': x, 'y':y, 'z':z}, ignore_index=True)
         # To print each append data step, uncomment below.
         # print(self.df)
-        self.readings_saver()
+        #self.readings_saver()
+        self.aws_readings_saver()
+
+#DB is throwing DB BS into this code. KT disapproves.
+    def add_readings_to_db(self, serial_no, ts, x, y, z):
+        conn = sqlite3.connect('data\\readings.db')
+        cur = conn.cursor()
+        sql_string = "insert into readings (x, y, z, serial_no, timestamp) values ('{0}','{1}','{2}','{3}','{4}');".format(x, y, z, serial_no, timestamp)
+        conn.commit()
+        conn.close()
 
     def get_number_of_readings(self):
         number_of_readings = self.df.index.max() + 1
         return number_of_readings
+
+    def get_number_of_readings_from_db(self):
+        conn = sqlite3.connect('data\\readings.db')
+        cur = conn.cursor()
+        cur.execute('select count(*) from readings;')
+        result = cur.fetchall()
+        count = result[0][0]
+        conn.commit()
+        conn.close()
+        return count
+
+
 
     def list_readings(self):
         print(self.df)
@@ -88,7 +110,21 @@ class StoredReadings():
             writer.save()
             self.df = []
             self.df = pd.DataFrame(columns=['serial_no', 'timestamp', 'x', 'y', 'z'])
+            s3 = boto3.resource('s3')
+            s3.meta.client.upload_file(filename, 'katiefirstbuckettest', filename)
 
+    def aws_readings_saver(self):
+        bucket = "katiefirstbuckettest"
+        n = self.get_number_of_readings()
+        if n >= 1000:
+            self.fileNumber = self.fileNumber + 1
+            filename = 'Saved_Readings_' + str(self.fileNumber) + '.csv'
+            data_string = self.df.to_csv()
+            s3 = boto3.resource('s3')
+            s3.Bucket(bucket).put_object(Key=filename, Body=data_string)
+            #Resetting the dataframe
+            self.df = []
+            self.df = pd.DataFrame(columns=['serial_no', 'timestamp', 'x', 'y', 'z'])
 
 
 if __name__ == '__main__':

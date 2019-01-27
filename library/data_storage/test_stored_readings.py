@@ -9,6 +9,7 @@ import random
 import datetime as dt
 from pathlib import Path
 from stored_readings import StoredReadings
+import os
 
 class TestStoredReadings(unittest.TestCase):
     def setUp(self):
@@ -31,6 +32,21 @@ class TestStoredReadings(unittest.TestCase):
         # This returns the highest index
         self.assertTrue(n == 3)
 
+    def test_add_readings_to_db(self):
+        print("Starting ADD readings to DB test")
+        os.chdir('C:\\Users\\katie\\Documents\\code\\flask-pi-iot')
+        print('This is the current working directory {}'.format(os.getcwd()))
+        aSR = StoredReadings()
+        initial_number = aSR.get_number_of_readings_from_db()
+        # Create data to send
+        for i in range (0, 3):
+            x = random.randint(0, 358)
+            y = random.randint(0, 358)
+            z = random.randint(0, 358)
+            aSR.add_readings_to_db("46406064", datetime, x,y,z)
+
+        ending_number = aSR.get_number_of_readings_from_db()
+        self.assertTrue(ending_number-initial_number==3)
 
     def test_list_readings(self):
         print("Starting LIST readings test.")
@@ -87,7 +103,7 @@ class TestStoredReadings(unittest.TestCase):
         numberReadings = aSR.get_number_of_readings()
         n = len(adal) - aSR.get_number_of_readings()
         self.assertTrue(n == 0)
-
+'''
     def test_excel_maker(self):
         print("We are making an excel sheet")
         aSR = StoredReadings()
@@ -100,6 +116,7 @@ class TestStoredReadings(unittest.TestCase):
         my_file = Path ('./my_file_name.xlsx')
 
         self.assertTrue(my_file.exists())
+'''
 
 if __name__ == '__main__':
     print("Starting Tests.")
