@@ -24,7 +24,9 @@ class TestStoredReadings(unittest.TestCase):
             x = random.randint(0, 358)
             y = random.randint(0, 358)
             z = random.randint(0, 358)
-            aSR.add_readings("46406064", dt.datetime.now(), x, y, z)
+            d = dt.datetime.now()
+            sn = "46406064"
+            aSR.add_readings(sn, d, x, y, z)
 
 
         n = aSR.get_number_of_readings()
@@ -43,7 +45,9 @@ class TestStoredReadings(unittest.TestCase):
             x = random.randint(0, 358)
             y = random.randint(0, 358)
             z = random.randint(0, 358)
-            aSR.add_readings_to_db("46406064", datetime, x,y,z)
+            d = dt.datetime.now()
+            sn = "46406064"
+            aSR.add_readings_to_db(sn, d, x, y, z)
 
         ending_number = aSR.get_number_of_readings_from_db()
         self.assertTrue(ending_number-initial_number==3)

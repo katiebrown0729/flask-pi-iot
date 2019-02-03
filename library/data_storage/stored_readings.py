@@ -25,7 +25,8 @@ class StoredReadings():
     def add_readings_to_db(self, serial_no, ts, x, y, z):
         conn = sqlite3.connect('data\\readings.db')
         cur = conn.cursor()
-        sql_string = "insert into readings (x, y, z, serial_no, timestamp) values ('{0}','{1}','{2}','{3}','{4}');".format(x, y, z, serial_no, timestamp)
+        sql_string = "insert into readings (x, y, z, serial_no, timestamp) values ('{0}','{1}','{2}','{3}','{4}');".format(x, y, z, serial_no, ts)
+        cur.execute(sql_string)
         conn.commit()
         conn.close()
 
