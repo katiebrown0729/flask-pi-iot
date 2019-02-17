@@ -10,6 +10,7 @@ import datetime as dt
 from pathlib import Path
 from stored_readings import StoredReadings
 import os
+import sqlite3
 
 class TestStoredReadings(unittest.TestCase):
     def setUp(self):
@@ -107,6 +108,36 @@ class TestStoredReadings(unittest.TestCase):
         numberReadings = aSR.get_number_of_readings()
         n = len(adal) - aSR.get_number_of_readings()
         self.assertTrue(n == 0)
+
+    def test_get_df_from_db_by_serial_no(self):
+        print("Starting get DF from DB test")
+        #this changes the directory so the test will run using the actual codes directory
+        os.chdir('C:\\Users\\katie\\Documents\\code\\flask-pi-iot')
+        print('This is the current working directory {}'.format(os.getcwd()))
+        aSR = StoredReadings()
+        #connecting to database to delete all test records
+        conn = sqlite3.connect('data\\readings.db')
+        cur = conn.cursor()
+        sql_string = "delete from readings where serial_no = 'DFTEST'"
+        cur.execute(sql_string)
+        conn.commit()
+        conn.close()
+
+        # Create data to send
+        for i in range(0, 3):
+            x = random.randint(0, 358)
+            y = random.randint(0, 358)
+            z = random.randint(0, 358)
+            d = dt.datetime.now()
+            sn = "DFTEST"
+            aSR.add_readings_to_db(sn, d, x, y, z)
+
+        df = aSR.get_df_from_db_by_serial_no("DFTEST")
+        print("Here is the DF returned from the DB")
+        print(df)
+        self.assertTrue(df.shape[0] == 3)
+
+
 '''
     def test_excel_maker(self):
         print("We are making an excel sheet")

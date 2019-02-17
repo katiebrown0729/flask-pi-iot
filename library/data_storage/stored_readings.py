@@ -44,7 +44,13 @@ class StoredReadings():
         conn.close()
         return count
 
-
+    def get_df_from_db_by_serial_no(self, serial_no):
+        conn = sqlite3.connect('data\\readings.db')
+        #serial_input = input('Enter serial no. ')
+        sqlString = 'select * from readings where serial_no = "{}"'.format(serial_no)
+        print(sqlString)
+        df = pd.read_sql_query(sqlString, conn)
+        return df
 
     def list_readings(self):
         print(self.df)
