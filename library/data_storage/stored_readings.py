@@ -2,6 +2,8 @@ import pandas as pd
 import boto3
 import numpy as np
 import sqlite3
+import random
+import datetime as dt
 
 
 class StoredReadings():
@@ -20,6 +22,35 @@ class StoredReadings():
         # print(self.df)
         #self.readings_saver()
         self.aws_readings_saver()
+
+# Method for adding readings to dataframe
+    def create_dataframe_for_testing(self):
+        print("Create dataframe for testing.")
+        # Create an empty dataframe
+        incoming_df = pd.DataFrame(columns=['serial_no', 'timestamp', 'x', 'y', 'z'])
+
+        # Create data for dataframe
+        for i in range(0, 3):
+            x = random.randint(0, 358)
+            y = random.randint(0, 358)
+            z = random.randint(0, 358)
+            d = dt.datetime.now()
+            sn = "46406064"
+            incoming_df = incoming_df.append({'serial_no': sn, 'timestamp': d, 'x': x, 'y': y, 'z': z}, ignore_index=True)
+
+        return incoming_df
+
+    def df_to_list_of_dicts(self, df):
+        datalist = []
+
+        for i, row in df.iterrows():
+            #print('The row is: {}'.format(row))
+            #print("this is the serial from row {}".format(row.serial_no))
+            d={'serial_no':row.serial_no,'timestamp':row.timestamp,'x':row.x,'y':row.y,'z':row.z}
+            datalist.append(d)
+
+        return(datalist)
+
 
 #DB is throwing DB BS into this code. KT disapproves.
     def add_readings_to_db(self, serial_no, ts, x, y, z):

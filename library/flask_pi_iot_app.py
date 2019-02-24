@@ -44,13 +44,18 @@ def main_page():
     return render_template('index.html')
 
 @app.route('/johnpi.html',methods=['POST','GET'])
+@app.route('/meganpi.html',methods=['POST','GET'])
 def john_page():
     if request.method == 'POST':
         print("JohnPi got a post")
         print(request.form)
+    if post:
+        df=dataStore.get_df_from_db_by_serial_no("JohnSerialNo")
+        l = convertdftolistofDicts(df)
+        render_template('johnsreading.html',data=l)
     return render_template('johnpi.html')
 
-@app.route('/meganpi.html',methods=['POST','GET'])
+#@app.route('/meganpi.html',methods=['POST','GET'])
 def megan_page():
     if request.method == 'POST':
         print("MeganPi got a post")

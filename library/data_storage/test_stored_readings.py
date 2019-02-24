@@ -11,6 +11,7 @@ from pathlib import Path
 from stored_readings import StoredReadings
 import os
 import sqlite3
+import pandas as pd
 
 class TestStoredReadings(unittest.TestCase):
     def setUp(self):
@@ -108,6 +109,27 @@ class TestStoredReadings(unittest.TestCase):
         numberReadings = aSR.get_number_of_readings()
         n = len(adal) - aSR.get_number_of_readings()
         self.assertTrue(n == 0)
+
+    # Testing readings to df
+    def test_create_dataframe_for_testing(self):
+        print("Starting READINGS TO DF test.")
+        aSR = StoredReadings()
+        # Create an empty dataframe
+        df = aSR.create_dataframe_for_testing()
+        self.assertTrue(df.shape[0] == 3)
+
+    #In progress pass df to turn into list of dicts
+    def test_df_to_list_of_dicts(self):
+        print("Starting DF TO LIST OF DICTS test")
+        aSR = StoredReadings()
+
+        test_df = aSR.create_dataframe_for_testing()
+        print("This is the test_df {}".format(test_df))
+        list_of_dicts = aSR.df_to_list_of_dicts(test_df)
+
+        print("The type of component in the list {}".format(type(list_of_dicts[2])))
+        self.assertTrue(type(list_of_dicts) == list)
+        self.assertTrue(type(list_of_dicts[2]) == dict)
 
     def test_get_df_from_db_by_serial_no(self):
         print("Starting get DF from DB test")
