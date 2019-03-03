@@ -45,7 +45,7 @@ class StoredReadings():
 
         for i, row in df.iterrows():
             #print('The row is: {}'.format(row))
-            #print("this is the serial from row {}".format(row.serial_no))
+            print("this is the serial from row {}".format(row.serial_no))
             d={'serial_no':row.serial_no,'timestamp':row.timestamp,'x':row.x,'y':row.y,'z':row.z}
             datalist.append(d)
 
@@ -82,6 +82,15 @@ class StoredReadings():
         print(sqlString)
         df = pd.read_sql_query(sqlString, conn)
         return df
+
+    def get_unique_serial_no_from_db(self):
+        conn = sqlite3.connect('data\\readings.db')
+        cur = conn.cursor()
+        cur.execute('select distinct(readings.serial_no) from readings;')
+        result = cur.fetchall()
+        conn.commit()
+        conn.close()
+        return result
 
     def list_readings(self):
         print(self.df)

@@ -32,6 +32,18 @@ def all_data():
     # Also "hook it up" here. For assignment 3.
     return render_template('alldata.html',data=d)
 
+@app.route('/sqltest.html', methods=['POST','GET'])
+def sql_test():
+    print("/sqltest")
+    serial_no = request.args.get('serial_no')
+    print(serial_no)
+    df = dataStore.get_df_from_db_by_serial_no(serial_no)
+    print("/sqltest:dataframe{}".format(df))
+    d = dataStore.df_to_list_of_dicts(df)
+    print(len(d))
+    return render_template('alldata.html',data=d)
+
+
 @app.route('/yaml')
 def my_yaml_microservice():
     pass

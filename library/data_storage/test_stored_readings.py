@@ -159,6 +159,16 @@ class TestStoredReadings(unittest.TestCase):
         print(df)
         self.assertTrue(df.shape[0] == 3)
 
+    def test_get_unique_serial_no_from_db(self):
+        aSR = StoredReadings()
+        uniqueSerialNumbers = aSR.get_unique_serial_no_from_db()
+        l = len(uniqueSerialNumbers)
+        self.assertTrue(l == 4)
+        #TODO: Make this more robust because this will fail if data changes (ie more unique serial_nos are added)
+
+
+
+
 
 '''
     def test_excel_maker(self):
